@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "barryvdh/laravel-debugbar": "^3.14",
         "devmarketer/easynav": "^1.0",
         "guzzlehttp/guzzle": "^7.7",
         "laravel/framework": "^9.19",
@@ -17,7 +18,8 @@
         "laravel/ui": "^4.0",
         "symfony/http-client": "^6.0",
         "symfony/mailgun-mailer": "^6.0",
-        "symfony/postmark-mailer": "^6.0"
+        "symfony/postmark-mailer": "^6.0",
+        "yajra/laravel-datatables-oracle": "^10.11"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^1.0",

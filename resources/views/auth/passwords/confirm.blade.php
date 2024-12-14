@@ -7,7 +7,7 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -35,7 +35,8 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
+                                            <input type="password" class="form-control form-control-user" name="password"
+                                                placeholder="{{ __('Password') }}" required autocomplete="current-password">
                                         </div>
 
                                         <div class="form-group">

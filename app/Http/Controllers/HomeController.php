@@ -31,6 +31,6 @@ class HomeController extends Controller
             //...
         ];
 
-        return view('home', compact('widget'));
+        return view('admin.dashboard', compact('widget'));
     }
 }
