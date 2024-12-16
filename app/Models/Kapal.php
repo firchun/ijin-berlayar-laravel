@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class BerkasUser extends Model
+class Kapal extends Model
 {
     use HasFactory;
-    protected $table = 'berkas_user';
+    protected $table = 'kapal';
     protected $guarded = [];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id_user');

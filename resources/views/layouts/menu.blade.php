@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
         <div class="sidebar-brand-icon">
             <i class="fas fa-ship"></i>
         </div>
@@ -20,33 +20,65 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    @if (Auth::user()->role != 'Pimpinan')
+        @php
+            $check_berkas = App\Models\BerkasUser::where('id_user', Auth::id())->latest()->first();
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        {{ __('Pengguna') }}
-    </div>
+            if ($check_berkas) {
+                $menu_user = true;
+            } else {
+                $menu_user = false;
+            }
+        @endphp
+        @if ($menu_user == true && $check_berkas->diterima == 1)
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                {{ __('Informasi') }}
+            </div>
+            <li class="nav-item {{ Nav::isRoute('berkas_user.update') }}">
+                <a class="nav-link"href="{{ route('berkas_user.update') }}">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>{{ __('Update Bekas') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Nav::isRoute('kapal') }}">
+                <a class="nav-link"href="{{ route('kapal') }}">
+                    <i class="fas fa-fw fa-ship"></i>
+                    <span>{{ __('Kapal') }}</span>
+                </a>
+            </li>
+        @endif
+    @endif
+    @if (Auth::user()->role == 'Pimpinan')
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            {{ __('Pengguna') }}
+        </div>
 
-    <!-- Nav Item - admin -->
-    <li class="nav-item {{ Nav::isRoute('users.admin') }}">
-        <a class="nav-link" href="{{ route('users.admin') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>{{ __('Admin') }}</span>
-        </a>
-    </li>
-    <!-- Nav Item - admin -->
-    <li class="nav-item {{ Nav::isRoute('users.staff') }}">
-        <a class="nav-link" href="{{ route('users.staff') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>{{ __('Staff') }}</span>
-        </a>
-    </li>
-    <!-- Nav Item - admin -->
-    <li class="nav-item {{ Nav::isRoute('users.user') }}">
-        <a class="nav-link" href="{{ route('users.user') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>{{ __('User') }}</span>
-        </a>
-    </li>
+        <!-- Nav Item - admin -->
+        <li class="nav-item {{ Nav::isRoute('users.admin') }}">
+            <a class="nav-link" href="{{ route('users.admin') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>{{ __('Admin') }}</span>
+            </a>
+        </li>
+        <!-- Nav Item - admin -->
+        <li class="nav-item {{ Nav::isRoute('users.staff') }}">
+            <a class="nav-link" href="{{ route('users.staff') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>{{ __('Staff') }}</span>
+            </a>
+        </li>
+        <!-- Nav Item - admin -->
+        <li class="nav-item {{ Nav::isRoute('users.user') }}">
+            <a class="nav-link" href="{{ route('users.user') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>{{ __('User') }}</span>
+            </a>
+        </li>
+    @endif
+    <!-- Divider -->
+    <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
         {{ __('Settings') }}

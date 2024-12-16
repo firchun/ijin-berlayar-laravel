@@ -98,6 +98,7 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'role' => $request->input('role'),
+                'email_verified_at' => now(),
                 'password' => Hash::make('password'),
             ];
 

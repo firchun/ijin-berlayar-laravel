@@ -24,10 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
+        $pimpinan = User::where('role', 'Pimpinan')->count();
+        $staff = User::where('role', 'Staff')->count();
+        $user = User::where('role', 'User')->count();
 
         $widget = [
-            'users' => $users,
+            'user' => $user,
+            'pimpinan' => $pimpinan,
+            'staff' => $staff,
             //...
         ];
 
