@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kapal', function (Blueprint $table) {
-            $table->boolean('diterima')->default(0)->after('alat_keselamatan');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('nik');
+            $table->dropColumn('nip');
+        });
+        Schema::table('users', function (Blueprint $table) {
+
+            $table->bigInteger('nik')->after('email')->nullable();
+            $table->bigInteger('nip')->after('nik')->nullable();
         });
     }
 
@@ -25,7 +31,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('info_kapal', function (Blueprint $table) {
+        Schema::table('bigint_in_users', function (Blueprint $table) {
             //
         });
     }

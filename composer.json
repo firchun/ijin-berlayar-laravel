@@ -11,6 +11,7 @@
         "php": "^8.0",
         "barryvdh/laravel-debugbar": "^3.14",
         "devmarketer/easynav": "^1.0",
+        "doctrine/dbal": "^4.2",
         "guzzlehttp/guzzle": "^7.7",
         "laravel/framework": "^9.19",
         "laravel/legacy-factories": "^1.0",

@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('kapal', function (Blueprint $table) {
-            $table->boolean('diterima')->default(0)->after('alat_keselamatan');
+        Schema::table('permohonan_berlayar', function (Blueprint $table) {
+            $table->boolean('diterima')->default(false)->after('berat_muatan');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('info_kapal', function (Blueprint $table) {
+        Schema::table('permohonan_berlayar', function (Blueprint $table) {
             //
         });
     }

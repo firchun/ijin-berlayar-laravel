@@ -11,8 +11,10 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ __('Confirm Password') }}</h1>
-                                        <p>{{ __('Please confirm your password before continuing.') }}</p>
+                                        <h1 class="h4 text-primary mb-2 font-weight-bold">
+                                            {{ env('APP_NAME') ?? 'Perijinan Berlayar' }}</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">{{ __('Konfirmasi Password') }}</h1>
+                                        <p>{{ __('silahkan konfirmasi password untuk melanjutkan.') }}</p>
                                     </div>
 
                                     @if ($errors->any())
@@ -41,7 +43,7 @@
 
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                {{ __('Confirm Password') }}
+                                                {{ __('Konfirmasi Password') }}
                                             </button>
                                         </div>
                                     </form>
@@ -51,7 +53,7 @@
                                     @if (Route::has('password.request'))
                                         <div class="text-center">
                                             <a class="small" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Password?') }}
+                                                {{ __('Lupa Password?') }}
                                             </a>
                                         </div>
                                     @endif

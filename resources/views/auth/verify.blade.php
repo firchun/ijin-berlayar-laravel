@@ -11,7 +11,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ __('Verify Your Email Address') }}</h1>
+                                        <h1 class="h4 text-primary mb-2 font-weight-bold">
+                                            {{ env('APP_NAME') ?? 'Perijinan Berlayar' }}</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">{{ __('Verifikasi alamat E-mail') }}</h1>
                                     </div>
 
                                     @if (session('resent'))
@@ -20,8 +22,8 @@
                                         </div>
                                     @endif
 
-                                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                                    {{ __('If you did not receive the email') }}, <a
+                                    {{ __('Sebelum di proses, silahkan check E-mail untuk link verifikasi') }}
+                                    {{ __('Jika anda belum mendapatkan link verifikasi pada E-mail') }}, <a
                                         href="{{ route('verification.resend') }}">{{ __('Klik untuk kirim ulang') }}</a>.
                                 </div>
                             </div>

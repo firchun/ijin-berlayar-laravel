@@ -11,6 +11,8 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
+                                        <h1 class="h4 text-primary mb-2 font-weight-bold">
+                                            {{ env('APP_NAME') ?? 'Perijinan Berlayar' }}</h1>
                                         <h1 class="h4 text-gray-900 mb-4">{{ __('Reset Password') }}</h1>
                                     </div>
 
@@ -31,8 +33,8 @@
 
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" name="email"
-                                                placeholder="{{ __('E-Mail Address') }}"
-                                                value="{{ $email ?? old('email') }}" required autofocus>
+                                                placeholder="{{ __('Alamat Email') }}" value="{{ $email ?? old('email') }}"
+                                                required autofocus>
                                         </div>
 
                                         <div class="form-group">
@@ -42,7 +44,7 @@
 
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                name="password_confirmation" placeholder="{{ __('Confirm Password') }}"
+                                                name="password_confirmation" placeholder="{{ __('Konfirmasi Password') }}"
                                                 required>
                                         </div>
 

@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\BerkasUserController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KapalController;
+use App\Http\Controllers\KepulanganController;
+use App\Http\Controllers\PermohonanBerlayarController;
+use App\Http\Controllers\RekomendasiLogistikController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +26,31 @@ Auth::routes();
 Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index')->name('home');
-//kapal
+    //kapal
     Route::get('/kapal', [KapalController::class, 'index'])->name('kapal');
+    Route::post('/kapal/store', [KapalController::class, 'store'])->name('kapal.store');
+    Route::delete('/kapal/delete/{id}', [KapalController::class, 'destroy'])->name('kapal.delete');
+    Route::get('/kapal-datatable', [KapalController::class, 'getKapalDataTable']);
+    //spb
+    Route::get('/spb', [PermohonanBerlayarController::class, 'index'])->name('spb');
+    Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
+    Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
+    Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
+    //kepulangan
+    Route::get('/kepulangan', [KepulanganController::class, 'index'])->name('kepulangan');
+    Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
+    Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
+    Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
+    //jadwal
+    Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
+    Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
+    Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
+    Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
+    //logistik
+    Route::get('/logistik', [RekomendasiLogistikController::class, 'index'])->name('logistik');
+    Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
+    Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
+    Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
     //berkas
     Route::post('/berkas_user/store', [BerkasUserController::class, 'store'])->name('berkas_user.store');
     Route::post('/berkas_user/update-berkas', [BerkasUserController::class, 'updateBerkas'])->name('berkas_user.update-berkas');

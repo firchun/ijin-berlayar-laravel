@@ -83,6 +83,7 @@ class UserController extends Controller
         if ($request->filled('id')) {
             $usersData = [
                 'name' => $request->input('name'),
+                'last_name' => $request->input('last_name') ?? '-',
                 'email' => $request->input('email'),
                 'role' => $request->input('role'),
             ];
@@ -96,6 +97,7 @@ class UserController extends Controller
         } else {
             $usersData = [
                 'name' => $request->input('name'),
+                'last_name' => $request->input('last_name') ?? '-',
                 'email' => $request->input('email'),
                 'role' => $request->input('role'),
                 'email_verified_at' => now(),

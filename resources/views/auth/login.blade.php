@@ -11,7 +11,11 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">{{ __('Login') }}</h1>
+                                        <h1 class="h4 text-primary mb-2 font-weight-bold">
+                                            {{ env('APP_NAME') ?? 'Perijinan Berlayar' }}</h1>
+                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">{{ __('Masuk') }}</h1>
+                                        <p class="text-mutted">Selamat datang di sistem informasi <b>perijinan berlayar</b>,
+                                            silahkan login terlebih dahulu..</p>
                                     </div>
 
                                     @if ($errors->any())
@@ -28,8 +32,8 @@
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" name="email"
-                                                placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}"
+                                            <input type="text" class="form-control form-control-user" name="email"
+                                                placeholder="{{ __('NIK / NIP / E-mail') }}" value="{{ old('email') }}"
                                                 required autofocus>
                                         </div>
 
@@ -43,13 +47,13 @@
                                                 <input type="checkbox" class="custom-control-input" name="remember"
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="custom-control-label"
-                                                    for="remember">{{ __('Remember Me') }}</label>
+                                                    for="remember">{{ __('Ingat login') }}</label>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                {{ __('Login') }}
+                                                {{ __('Masuk') }}
                                             </button>
                                         </div>
 
@@ -60,7 +64,7 @@
                                     @if (Route::has('password.request'))
                                         <div class="text-center">
                                             <a class="small" href="{{ route('password.request') }}">
-                                                {{ __('Forgot Password?') }}
+                                                {{ __('Lupa password?') }}
                                             </a>
                                         </div>
                                     @endif
@@ -68,7 +72,7 @@
                                     @if (Route::has('register'))
                                         <div class="text-center">
                                             <a class="small"
-                                                href="{{ route('register') }}">{{ __('Create an Account!') }}</a>
+                                                href="{{ route('register') }}">{{ __('Buat akun baru!') }}</a>
                                         </div>
                                     @endif
                                 </div>

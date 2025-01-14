@@ -6,15 +6,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">{{ $title ?? 'Title' }}</h5>
-                    <div class="ms-auto">
-                        <button class="btn btn-primary create-new" type="button" data-bs-toggle="modal"
-                            data-bs-target="#create">
-                            <span>
-                                <i class="bx bx-plus me-sm-1"></i>
-                                <span class="d-none d-sm-inline-block"><i class="fa fa-plus"></i> Tambah Kapal</span>
-                            </span>
-                        </button>
-                    </div>
+
                 </div>
                 <div class="card-body">
                     <div class="card-datatable table-responsive">
@@ -23,9 +15,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
-                                    <th>Bahan Kapal</th>
-                                    <th>jumlah kru</th>
-                                    <th>Action</th>
+                                    <th>Nama Nahkoda</th>
+                                    <th>Cetak</th>
                                 </tr>
                             </thead>
 
@@ -33,9 +24,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
-                                    <th>Bahan Kapal</th>
-                                    <th>jumlah kru</th>
-                                    <th>Action</th>
+                                    <th>Nama Nahkoda</th>
+                                    <th>Cetak</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -44,6 +34,6 @@
             </div>
         </div>
     </div>
-    @include('admin.kapal.components.modal')
+    @include('admin.logistik.components.modal')
 @endsection
-@include('admin.kapal.script')
+@include('admin.logistik.script')

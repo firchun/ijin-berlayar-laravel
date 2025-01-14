@@ -44,13 +44,54 @@
             <li class="nav-item {{ Nav::isRoute('kapal') }}">
                 <a class="nav-link"href="{{ route('kapal') }}">
                     <i class="fas fa-fw fa-ship"></i>
-                    <span>{{ __('Kapal') }}</span>
+                    <span>{{ __('Data Kapal') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Nav::isRoute('spb') }}">
+                <a class="nav-link"href="{{ route('spb') }}">
+                    <i class="fas fa-fw fa-file"></i>
+                    <span>{{ __('Pengajuan SPB') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Nav::isRoute('jadwal') }}">
+                <a class="nav-link"href="{{ route('jadwal') }}">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>{{ __('Update Jadwal ') }}</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Nav::isRoute('logistik') }}">
+                <a class="nav-link"href="{{ route('logistik') }}">
+                    <i class="fas fa-fw fa-box"></i>
+                    <span>{{ __('Rekomendasi Logistik') }}</span>
                 </a>
             </li>
         @endif
     @endif
+    @if (Auth::user()->role == 'Staff')
+        <li class="nav-item {{ Nav::isRoute('spb') }}">
+            <a class="nav-link"href="{{ route('spb') }}">
+                <i class="fas fa-fw fa-file"></i>
+                <span>{{ __('Pengajuan SPB') }}</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Nav::isRoute('kepulangan') }}">
+            <a class="nav-link"href="{{ route('kepulangan') }}">
+                <i class="fas fa-fw fa-ship"></i>
+                <span>{{ __('Verfikasi Kepulangan') }}</span>
+            </a>
+        </li>
+    @endif
     @if (Auth::user()->role == 'Pimpinan')
         <!-- Heading -->
+        <div class="sidebar-heading">
+            {{ __('SPB') }}
+        </div>
+        <li class="nav-item {{ Nav::isRoute('spb') }}">
+            <a class="nav-link"href="{{ route('spb') }}">
+                <i class="fas fa-fw fa-file"></i>
+                <span>{{ __('Verifikasi SPB') }}</span>
+            </a>
+        </li>
         <div class="sidebar-heading">
             {{ __('Pengguna') }}
         </div>
