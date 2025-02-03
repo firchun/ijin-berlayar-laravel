@@ -31,27 +31,57 @@ class PermohonanBerlayarController extends Controller
 
             ->addColumn('action', function ($user) {
                 $delete =  '<button class="btn btn-sm btn-danger delete-button mx-1" onclick="deleteUser(' . $user->id . ')">Delete</button>';
-                $update =  '<button class="btn btn-sm btn-warning mx-1" onclick="editUser(' . $user->id . ')">Edit</button>';
-                $verifikasi =  '<button class="btn btn-sm btn-warning mx-1" onclick="verifikasiUser(' . $user->id . ')">Verifikasi</button>';
+                $update =  '<button class="btn btn-sm btn-warning mx-1" onclick="editUser(' . $user->id . ')" ' . ($user->diterima == 1 && $user->rekomendasi == 1 ? 'disabled' : '') . '>Edit</button>';
                 $detail =  '<button class="btn btn-sm btn-success mx-1" onclick="detailUser(' . $user->id . ')">Detail</button>';
+                $cetak =  '<button class="btn btn-sm btn-danger mx-1" onclick="downloadUser(' . $user->id . ')"><i class="fa fa-print"></i> Cetak SPB</button>';
+                if (Auth::user()->role == 'Pimpinan') {
+                    if ($user->rekomendasi == 1 && $user->diterima == 0) {
+                        $verifikasi =  '<button class="btn btn-sm btn-warning mx-1" onclick="verifikasiUser(' . $user->id . ')">Verifikasi</button>';
+                    } else {
+                        $verifikasi =  $cetak;
+                    }
+                } elseif (Auth::user()->role == 'Staff') {
+                    if ($user->rekomendasi != 1) {
+                        $verifikasi =  '<button class="btn btn-sm btn-warning mx-1" onclick="terimaUser(' . $user->id . ')">Terima</button>';
+                    } else {
+                        $verifikasi = $cetak;
+                    }
+                    if ($user->rekomendasi == 1 && $user->diterima == 1) {
+                        $verifikasi =  '<button class="btn btn-sm btn-danger mx-1" onclick="downloadUser(' . $user->id . ')"><i class="fa fa-print"></i> Cetak SPB</button>';
+                    }
+                }
                 if (Auth::user()->role == 'User') {
-                    return $update . ($user->diterima == 0 ? $delete : '');
+                    return $update . ($user->diterima == 0 ? $delete : $cetak);
                 } else {
                     return $verifikasi . $detail;
                 }
             })
             ->addColumn('cetak_rekomendasi', function ($user) {
-                return '<button class="btn btn-sm btn-danger  mx-1"><i class="fa fa-file-pdf"></i> PDF Rekomendasi</button>';
+                if ($user->diterima == 1) {
+                    return '<button class="btn btn-sm btn-danger  mx-1" onclick="rekomendasiLogistik(' . $user->id . ')"><i class="fa fa-file-pdf"></i> PDF Rekomendasi</button>';
+                } else {
+                    return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
+                }
             })
             ->addColumn('update_jadwal', function ($user) {
-                return '<button class="btn btn-sm btn-warning  mx-1"><i class="fa fa-calendar"></i> Update Jadwal</button>';
+                if ($user->diterima == 1) {
+                    return '<button class="btn btn-sm btn-warning  mx-1" onclick="updateJadwal(' . $user->id . ')"><i class="fa fa-calendar"></i> Update Jadwal</button>';
+                } else {
+                    return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
+                }
             })
             ->addColumn('verifikasi_kepulangan', function ($user) {
-                return '<button class="btn btn-sm btn-warning  mx-1"><i class="fa fa-check"></i> Verifikasi</button>';
+                if ($user->diterima == 1) {
+                    return '<button class="btn btn-sm btn-warning  mx-1"  onclick="verifikasiKepulangan(' . $user->id . ')"><i class="fa fa-check"></i> Verifikasi Kepulangan</button>';
+                } else {
+                    return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
+                }
             })
             ->addColumn('status', function ($PermohonanBerlayar) {
                 if ($PermohonanBerlayar->diterima == 0) {
-                    return '<span class="badge badge-warning">Menunggu Verifikasi</span>';
+                    return '<span class="badge badge-warning">Menunggu Rekomendasi</span>';
+                } else if ($PermohonanBerlayar->diterima == 0 && $PermohonanBerlayar->rekomendasi == 1) {
+                    return '<span class="badge badge-warning">Menunggu Verifikasi Pimpinan</span>';
                 } else if ($PermohonanBerlayar->diterima == 1) {
                     return '<span class="badge badge-success">Diterima</span>';
                 } else {
@@ -110,5 +140,10 @@ class PermohonanBerlayarController extends Controller
         $PermohonanBerlayar->delete();
 
         return response()->json(['message' => 'PermohonanBerlayar deleted successfully']);
+    }
+    public function show($id)
+    {
+        $detailUser = PermohonanBerlayar::with(['kapal'])->findOrFail($id);
+        return response()->json($detailUser);
     }
 }

@@ -24,6 +24,9 @@
                     }
                 ]
             });
+            window.verifikasiKepulangan = function(id) {
+                $('#kepulanganModal').modal('show');
+            };
             $('.create-new').click(function() {
                 $('#createModal').modal('show');
             });

@@ -5,6 +5,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\KepulanganController;
 use App\Http\Controllers\PermohonanBerlayarController;
+use App\Http\Controllers\RekomendasiBerlayarController;
 use App\Http\Controllers\RekomendasiLogistikController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -46,18 +47,28 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
     Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
     Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
+    Route::get('/detail-spb/{id}', [PermohonanBerlayarController::class, 'show']);
+    //rekomendasi
+    Route::post('/rekomendasi/store', [RekomendasiBerlayarController::class, 'store'])->name('rekomendasi.store');
+    Route::get('/rekomendasi-datatable/{id_permohonan_berlayar}', [RekomendasiBerlayarController::class, 'getRekomendasiDataTable']);
+    Route::post('/rekomendasi/update-permohonan/{id}', [RekomendasiBerlayarController::class, 'update'])->name('rekomendasi.update-permohonan');
+    Route::post('/rekomendasi/verifikasi/{id}', [RekomendasiBerlayarController::class, 'verifikasi'])->name('rekomendasi.verifikasi');
+    Route::delete('/rekomendasi/delete/{id}', [RekomendasiBerlayarController::class, 'destroy'])->name('rekomendasi.delete');
     //logistik
-    Route::get('/logistik', [RekomendasiLogistikController::class, 'index'])->name('logistik');
-    Route::post('/spb/store', [PermohonanBerlayarController::class, 'store'])->name('spb.store');
-    Route::delete('/spb/delete/{id}', [PermohonanBerlayarController::class, 'destroy'])->name('spb.delete');
-    Route::get('/spb-datatable', [PermohonanBerlayarController::class, 'getPermohonanBerlayarDataTable']);
+    Route::get('/logistik', [RekomendasiBerlayarController::class, 'index'])->name('logistik');
     //berkas
     Route::post('/berkas_user/store', [BerkasUserController::class, 'store'])->name('berkas_user.store');
     Route::post('/berkas_user/update-berkas', [BerkasUserController::class, 'updateBerkas'])->name('berkas_user.update-berkas');
     Route::get('/berkas_user/update', [BerkasUserController::class, 'update'])->name('berkas_user.update');
+    Route::get('/berkas-user/{id}', [BerkasUserController::class, 'show']);
     //profile
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
+    //report
+    Route::get('/report/logistik/{id}', 'ReportController@logistik')->name('report.logistik');
+    Route::get('/report/spb/{id}', 'ReportController@spb')->name('report.spb');
+
 
     Route::get('/about', function () {
         return view('about');

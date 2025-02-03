@@ -15,7 +15,7 @@
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
                                     <th>Nama Nahkoda</th>
-                                    <th>Cetak</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -24,7 +24,7 @@
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
                                     <th>Nama Nahkoda</th>
-                                    <th>Cetak</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>

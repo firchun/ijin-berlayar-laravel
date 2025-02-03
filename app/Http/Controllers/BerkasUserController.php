@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BerkasUser;
+use App\Models\Kapal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -111,5 +112,18 @@ class BerkasUserController extends Controller
         $berkas->save();
 
         return back()->with('success', 'Berkas berhasil diperbarui!');
+    }
+    public function show($id_kapal)
+    {
+        $kapal = Kapal::findorFail($id_kapal);
+        $detailUser = BerkasUser::where('id_user', $kapal->id_user)->first();
+
+        return response()->json([
+            'file_ktp' => Storage::url($detailUser->file_ktp),
+            'file_pkl' => Storage::url($detailUser->file_pkl),
+            'file_bpjs' => Storage::url($detailUser->file_bpjs),
+            'file_sertif_kapal' => Storage::url($detailUser->file_sertif_kapal),
+            'file_kesehatan' => Storage::url($detailUser->file_kesehatan),
+        ]);
     }
 }
