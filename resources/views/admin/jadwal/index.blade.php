@@ -16,7 +16,8 @@
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
                                     <th>Nama Nahkoda</th>
-                                    <th>Update</th>
+                                    <th>Keberangkatan</th>
+                                    <th>Kepulangan</th>
                                 </tr>
                             </thead>
 
@@ -25,7 +26,8 @@
                                     <th>ID</th>
                                     <th>Nama Kapal</th>
                                     <th>Nama Nahkoda</th>
-                                    <th>Update</th>
+                                    <th>Keberangkatan</th>
+                                    <th>Kepulangan</th>
                                 </tr>
                             </tfoot>
                         </table>

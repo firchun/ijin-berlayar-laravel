@@ -63,16 +63,25 @@ class PermohonanBerlayarController extends Controller
                     return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
                 }
             })
-            ->addColumn('update_jadwal', function ($user) {
+
+            ->addColumn('verifikasi_keberangkatan', function ($user) {
                 if ($user->diterima == 1) {
-                    return '<button class="btn btn-sm btn-warning  mx-1" onclick="updateJadwal(' . $user->id . ')"><i class="fa fa-calendar"></i> Update Jadwal</button>';
+                    if ($user->tgl_keberangkatan == null) {
+                        return '<button class="btn btn-sm btn-warning  mx-1" onclick="updateKeberangkatan(' . $user->id . ')"><i class="fa fa-calendar"></i> Update Keberangkatan</button>';
+                    } else {
+                        return '<span class="badge badge-danger">Keberangkatan telah diupdate</span>';
+                    }
                 } else {
                     return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
                 }
             })
             ->addColumn('verifikasi_kepulangan', function ($user) {
                 if ($user->diterima == 1) {
-                    return '<button class="btn btn-sm btn-warning  mx-1"  onclick="verifikasiKepulangan(' . $user->id . ')"><i class="fa fa-check"></i> Verifikasi Kepulangan</button>';
+                    if ($user->tgl_kedatangan == null) {
+                        return '<button class="btn btn-sm btn-warning  mx-1" onclick="updateJadwal(' . $user->id . ')"><i class="fa fa-calendar"></i> Update Kepulangan</button>';
+                    } else {
+                        return '<span class="badge badge-danger">Kepulangan telah diupdate</span> <button class="btn btn-sm btn-primary  mx-1" onclick="detailTangkapan(' . $user->id . ')"><i class="fa fa-file"></i> Tangkapan</button>';
+                    }
                 } else {
                     return '<span class="badge badge-danger">Menunggu di verifikasi</span>';
                 }
@@ -88,7 +97,7 @@ class PermohonanBerlayarController extends Controller
                     return '<span class="badge badge-danger">Ditolak</span>';
                 }
             })
-            ->rawColumns(['action', 'status', 'cetak_rekomendasi', 'update_jadwal', 'verifikasi_kepulangan'])
+            ->rawColumns(['action', 'status', 'cetak_rekomendasi', 'update_jadwal', 'verifikasi_kepulangan', 'verifikasi_keberangkatan'])
             ->make(true);
     }
 

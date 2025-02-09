@@ -101,17 +101,149 @@
 </div>
 <div class="modal fade" id="updateJadwalModal" tabindex="-1" aria-labelledby="rekomendasiModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="rekomendasiModalLabel">Update Jadwal</h5>
+                <h5 class="modal-title" id="rekomendasiModalLabel">Update Kepulangan</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-
+                <form id="tangkapanForm">
+                    <input type="hidden" id="id_permohonan_berlayar" name="id_permohonan_berlayar">
+                    <div class="p-2 border mb-3 "
+                        style="background-color: rgba(4, 130, 255, 0.363); border-radius:10px;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="nama_barang" class="form-label">Nama Tangkapan</label>
+                                    <input type="text" class="form-control" id="nama_tangkapan"
+                                        name="nama_tangkapan" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="jumlah" class="form-label">Jenis Ikan</label>
+                                    <input type="text" class="form-control" id="jenis_ikan" name="jenis_ikan"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="jumlah" class="form-label">Jumlah</label>
+                                    <input type="text" class="form-control" id="jumlah"
+                                        name="jumlah_tangkapan" required value="0">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="satuan" class="form-label">Satuan</label>
+                                    <input type="text" class="form-control" id="satuan" name="satuan"
+                                        required value="Kg">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="simpanTangkapan" class="btn btn-primary"><i
+                                class="fa fa-plus"></i> Tambah</button>
+                    </div>
+                </form>
+                <hr>
+                <table class="table table-hover table-striped table-bordered display" id="datatable-tangkapan"
+                    style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Tangkapan</th>
+                            <th>Jenis</th>
+                            <th>Jumlah</th>
+                            <th>Hapus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" id="updateKepulangan" class="btn btn-primary"><i
+                        class="fa-solid fa-arrow-up-right-from-square"></i>
+                    Update Kepulangan</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detailTangkapanModal" tabindex="-1" aria-labelledby="rekomendasiModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rekomendasiModalLabel">Detail Tangkapan</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover table-striped table-bordered display" id="datatable-detail-tangkapan"
+                    style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Tangkapan</th>
+                            <th>Jenis</th>
+                            <th>Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="updateKepulanganModal" tabindex="-1" aria-labelledby="rekomendasiModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rekomendasiModalLabel">Konfirmasi Kepulangan</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateKepulanganForm">
+                    <div class="mb-3">
+                        <label for="">Tanggal Kepulangan</label>
+                        <input type="date" id="tgl_kedatangan" name="tgl_kedatangan" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="button" id="konfirmasiKepulangan" class="btn btn-primary">
+                    Konfirmasi</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="updateKeberangkatanModal" tabindex="-1" aria-labelledby="rekomendasiModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rekomendasiModalLabel">Konfirmasi Berangkatan</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <form id="updateKeberangkatanForm">
+                    <div class="mb-3">
+                        <label for="">Tanggal Berlayar</label>
+                        <input type="date" id="tgl_keberangkatan" name="tgl_keberangkatan" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="button" id="konfirmasiKeberangkatan" class="btn btn-primary">
+                    Konfirmasi</button>
             </div>
         </div>
     </div>

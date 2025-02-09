@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BerkasUserController;
+use App\Http\Controllers\HasilTangkapanController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KapalController;
 use App\Http\Controllers\KepulanganController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\PermohonanBerlayarController;
 use App\Http\Controllers\RekomendasiBerlayarController;
 use App\Http\Controllers\RekomendasiLogistikController;
 use App\Http\Controllers\UserController;
+use App\Models\HasilTangkapan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +56,12 @@ Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::post('/rekomendasi/update-permohonan/{id}', [RekomendasiBerlayarController::class, 'update'])->name('rekomendasi.update-permohonan');
     Route::post('/rekomendasi/verifikasi/{id}', [RekomendasiBerlayarController::class, 'verifikasi'])->name('rekomendasi.verifikasi');
     Route::delete('/rekomendasi/delete/{id}', [RekomendasiBerlayarController::class, 'destroy'])->name('rekomendasi.delete');
+    //hasil tangkapan
+    Route::post('/tangkapan/store', [HasilTangkapanController::class, 'store'])->name('tangkapan.store');
+    Route::get('/tangkapan-datatable/{id_permohonan_berlayar}', [HasilTangkapanController::class, 'getTangkapanDataTable']);
+    Route::delete('/tangkapan/delete/{id}', [HasilTangkapanController::class, 'destroy'])->name('tangkapan.delete');
+    Route::post('/tangkapan/update-kedatangan/{id}', [HasilTangkapanController::class, 'update'])->name('tangkapan.update-kedatangan');
+    Route::post('/tangkapan/update-keberangkatan/{id}', [HasilTangkapanController::class, 'keberangkatan'])->name('tangkapan.update-keberangkatan');
     //logistik
     Route::get('/logistik', [RekomendasiBerlayarController::class, 'index'])->name('logistik');
     //berkas
